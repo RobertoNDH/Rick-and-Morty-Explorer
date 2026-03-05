@@ -1,1 +1,33 @@
+:root {
+  --primary-green: #27ae60;
+  --dark-blue: #2c3e50;
+  --bg-light: #f4f7f6;
+  --white: #ffffff;
+  --text-gray: #555555;
+  --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  --radius: 12px;
+}
 
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--bg-light);
+  font-family: 'Inter', system-ui, sans-serif;
+  color: var(--dark-blue);
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.main-title {
+  color: var(--primary-green);
+  font-size: 2.8rem;
+  margin-bottom: 10px;
+}
