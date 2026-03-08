@@ -55,3 +55,35 @@
   color: var(--primary-green);
   font-weight: bold;
 }
+
+.filter-container {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 30px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.filter-input {
+  padding: 12px 20px;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  font-size: 1rem;
+  width: 100%;
+  max-width: 300px;
+  outline: none;
+  transition: border-color 0.3s;
+}
+
+.filter-input:focus {
+  border-color: var(--primary-green);
+}
+
+.filter-select {
+  padding: 12px;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  background-color: white;
+  font-size: 1rem;
+  cursor: pointer;
+}
