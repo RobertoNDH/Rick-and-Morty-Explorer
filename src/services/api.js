@@ -1,23 +1,31 @@
 const BASE_URL = 'https://rickandmortyapi.com/api/character';
 
-export const getCharacters = async (name = '', status = '') => {
+export const getCharacters = async (name = '', status = '', url = null) => {
   try {
-    const query = new URLSearchParams();
-    if (name) query.append('name', name);
-    if (status) query.append('status', status);
+    let finalUrl = url;
 
-    const queryString = query.toString();
-    const url = queryString ? `${BASE_URL}/?${queryString}` : BASE_URL;
+    if (!finalUrl) {
+      const query = new URLSearchParams();
+      if (name) query.append('name', name);
+      if (status) query.append('status', status);
+      
+      const queryString = query.toString();
+      finalUrl = queryString ? `https://rickandmortyapi.com/api/character/?${queryString}` : 'https://rickandmortyapi.com/api/character';
+    }
 
-    const response = await fetch(url);
+    const response = await fetch(finalUrl);
     
     if (!response.ok) {
-      return { results: [], error: 'No se encontraron personajes' };
+      return { results: [], info: null, error: 'No hay más dimensiones que explorar' };
     }
 
     const data = await response.json();
-    return { results: data.results, error: null };
+    return { 
+      results: data.results, 
+      info: data.info, 
+      error: null 
+    };
   } catch (error) {
-    return { results: [], error: 'Error de conexión con el multiverso' };
+    return { results: [], info: null, error: 'Error de conexión' };
   }
 };
