@@ -1,9 +1,13 @@
 import React from 'react';
-import './characters.css'; 
+import './characters.css';
 
-const CharacterCard = ({ character }) => {
+const CharacterCard = ({ character, onSelectCharacter }) => {
   return (
-    <article className="character-card">
+    <article 
+      className="character-card" 
+      onClick={() => onSelectCharacter(character)}
+      style={{ cursor: 'pointer' }} 
+    >
       <img 
         src={character.image} 
         alt={character.name} 
@@ -11,14 +15,9 @@ const CharacterCard = ({ character }) => {
       />
       <div className="character-info">
         <h3 className="character-name">{character.name}</h3>
-        <p className="character-detail">
-          <strong>Especie:</strong> {character.species}
-        </p>
-        <p className="character-detail">
-          <strong>Origen:</strong> {character.origin.name}
-        </p>
+        <p className="character-detail"><strong>Especie:</strong> {character.species}</p>
         <div className="character-detail">
-          <span className="status-badge">
+          <span className={`status-badge ${character.status.toLowerCase()}`}>
             {character.status}
           </span>
         </div>
