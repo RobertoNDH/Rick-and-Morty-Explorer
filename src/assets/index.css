@@ -31,3 +31,51 @@ body {
   font-size: 2.8rem;
   margin-bottom: 10px;
 }
+
+.view-controls {
+  margin-bottom: 25px;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.btn-toggle {
+  padding: 10px 20px;
+  border: 2px solid var(--primary-green);
+  background: transparent;
+  color: var(--primary-green);
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+.btn-toggle.active {
+  background: var(--primary-green);
+  color: white;
+}
+
+.btn-toggle:hover {
+  background: rgba(39, 174, 96, 0.1);
+}
+
+.btn-toggle.active:hover {
+  background: var(--primary-green);
+}
+
+.section-title {
+  text-align: center;
+  margin: 20px 0;
+  color: var(--dark-blue);
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.empty-state {
+  padding: 60px;
+  background: #eee;
+  border-radius: 12px;
+  color: #888;
+  font-style: italic;
+}
