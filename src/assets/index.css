@@ -12,14 +12,21 @@ body {
   margin: 0;
   padding: 0;
   background-color: var(--bg-light);
-  font-family: 'Inter', system-ui, sans-serif;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   color: var(--dark-blue);
+  line-height: 1.6;
 }
 
 .container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 40px 20px;
+  padding: 20px;
+}
+
+@media (min-width: 768px) {
+  .container {
+    padding: 40px;
+  }
 }
 
 .text-center {
@@ -28,54 +35,79 @@ body {
 
 .main-title {
   color: var(--primary-green);
-  font-size: 2.8rem;
+  font-size: 2rem;
   margin-bottom: 10px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+@media (min-width: 768px) {
+  .main-title {
+    font-size: 3rem;
+  }
+}
+
+.section-title {
+  text-align: center;
+  margin: 30px 0;
+  color: var(--dark-blue);
+  font-size: 1.1rem;
+  text-transform: uppercase;
+  border-bottom: 2px solid #ddd;
+  display: inline-block;
+  padding-bottom: 5px;
 }
 
 .view-controls {
-  margin-bottom: 25px;
+  margin: 20px 0 30px 0;
   display: flex;
-  justify-content: center;
-  gap: 10px;
+  flex-direction: column;
+  gap: 12px;
+  align-items: center;
+}
+
+@media (min-width: 480px) {
+  .view-controls {
+    flex-direction: row;
+    justify-content: center;
+  }
 }
 
 .btn-toggle {
-  padding: 10px 20px;
+  padding: 12px 24px;
   border: 2px solid var(--primary-green);
   background: transparent;
   color: var(--primary-green);
-  border-radius: 8px;
+  border-radius: 30px;
   cursor: pointer;
   font-weight: bold;
   transition: all 0.3s ease;
+  width: 100%;
+  max-width: 250px;
 }
 
 .btn-toggle.active {
   background: var(--primary-green);
   color: white;
+  box-shadow: 0 4px 10px rgba(39, 174, 96, 0.3);
 }
 
-.btn-toggle:hover {
+.btn-toggle:hover:not(.active) {
   background: rgba(39, 174, 96, 0.1);
 }
 
-.btn-toggle.active:hover {
-  background: var(--primary-green);
-}
-
-.section-title {
-  text-align: center;
-  margin: 20px 0;
-  color: var(--dark-blue);
-  font-size: 1.2rem;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-}
-
 .empty-state {
-  padding: 60px;
-  background: #eee;
-  border-radius: 12px;
-  color: #888;
+  padding: 60px 20px;
+  background: #e9ecef;
+  border-radius: var(--radius);
+  color: var(--text-gray);
   font-style: italic;
+  margin-top: 20px;
+}
+
+.loading-state {
+  font-size: 1.2rem;
+  color: var(--primary-green);
+  font-weight: bold;
+  margin: 40px 0;
 }
