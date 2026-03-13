@@ -23,56 +23,6 @@ body {
   padding: 20px;
 }
 
-@media (min-width: 768px) {
-  .container {
-    padding: 40px;
-  }
-}
-
-.text-center {
-  text-align: center;
-}
-
-.main-title {
-  color: var(--primary-green);
-  font-size: 2rem;
-  margin-bottom: 10px;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-}
-
-@media (min-width: 768px) {
-  .main-title {
-    font-size: 3rem;
-  }
-}
-
-.section-title {
-  text-align: center;
-  margin: 30px 0;
-  color: var(--dark-blue);
-  font-size: 1.1rem;
-  text-transform: uppercase;
-  border-bottom: 2px solid #ddd;
-  display: inline-block;
-  padding-bottom: 5px;
-}
-
-.view-controls {
-  margin: 20px 0 30px 0;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  align-items: center;
-}
-
-@media (min-width: 480px) {
-  .view-controls {
-    flex-direction: row;
-    justify-content: center;
-  }
-}
-
 .btn-toggle {
   padding: 12px 24px;
   border: 2px solid var(--primary-green);
@@ -110,4 +60,90 @@ body {
   color: var(--primary-green);
   font-weight: bold;
   margin: 40px 0;
+}
+
+.error-container {
+  padding: 40px;
+  margin: 20px 0;
+  border: 2px dashed #e74c3c;
+  border-radius: 12px;
+  background-color: #fdf2f2;
+  text-align: center;
+}
+
+.error-title {
+  color: #e74c3c;
+  margin-top: 0;
+}
+
+.error-message {
+  color: #c0392b;
+  font-weight: 500;
+}
+
+.btn-retry {
+  margin-top: 20px;
+  padding: 12px 30px;
+  background-color: #e74c3c;
+  color: white;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.btn-retry:hover {
+  background-color: #c0392b;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.main-title {
+  color: var(--primary-green);
+  font-size: 2rem;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.section-title {
+  text-align: center;
+  margin: 30px 0;
+  color: var(--dark-blue);
+  font-size: 1.1rem;
+  text-transform: uppercase;
+  border-bottom: 2px solid #ddd;
+  display: inline-block;
+  padding-bottom: 5px;
+}
+
+.view-controls {
+  margin: 20px 0 30px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: center;
+}
+
+@media (min-width: 768px) {
+  .container {
+    padding: 40px;
+  }
+}
+
+
+@media (min-width: 768px) {
+  .main-title {
+    font-size: 3rem;
+  }
+}
+
+
+@media (min-width: 480px) {
+  .view-controls {
+    flex-direction: row;
+    justify-content: center;
+  }
 }
