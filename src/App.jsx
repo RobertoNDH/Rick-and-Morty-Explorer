@@ -3,6 +3,7 @@ import { getCharacters } from './services/api';
 import CharacterList from './features/characters/CharacterList';
 import CharacterFilters from './features/characters/CharacterFilters';
 import CharacterDetail from './features/characters/CharacterDetail';
+import ErrorMessage from './components/ErrorMessage'; 
 import './assets/index.css';
 
 function App() {
@@ -15,7 +16,6 @@ function App() {
   const [filterName, setFilterName] = useState('');
   const [filterStatus, setFilterStatus] = useState('');
   const [showFavoritesOnly, setShowFavoritesOnly] = useState(false);
-
   const [favorites, setFavorites] = useState(() => {
     const saved = localStorage.getItem('rm-favorites');
     return saved ? JSON.parse(saved) : [];
@@ -26,26 +26,38 @@ function App() {
   }, [favorites]);
 
   useEffect(() => {
-    if (showFavoritesOnly) return; 
+    if (showFavoritesOnly) return;
 
     const fetchData = async () => {
       setLoading(true);
-      const { results, info, error } = await getCharacters(filterName, filterStatus);
-      if (error) {
-        setCharacters([]);
-        setNextPageUrl(null);
-        setError(error);
-      } else {
-        setCharacters(results);
-        setNextPageUrl(info.next);
-        setError(null);
+      setError(null);
+
+      try {
+        const { results, info, error: apiError } = await getCharacters(filterName, filterStatus);
+        
+        if (apiError) {
+          setCharacters([]);
+          setNextPageUrl(null);
+          setError(apiError);
+        } else {
+          setCharacters(results);
+          setNextPageUrl(info.next);
+        }
+      } catch (err) {
+        setError("Error inesperado en el portal. Inténtalo de nuevo.");
+      } finally {
+        setLoading(false);
       }
-      setLoading(false);
     };
 
     const timeoutId = setTimeout(fetchData, 500);
     return () => clearTimeout(timeoutId);
   }, [filterName, filterStatus, showFavoritesOnly]);
+
+  const handleRetry = () => {
+    setError(null);
+    setLoading(true);
+  };
 
   const toggleFavorite = (character) => {
     setFavorites((prev) => {
@@ -68,7 +80,7 @@ function App() {
   return (
     <div className="container">
       <header className="text-center">
-        <h1 className="main-title">Rick and Morty Explorer</h1>
+        <h1 className="main-title">Rick and Morty Explorer</h1>        
         <div className="view-controls">
           <button 
             className={`btn-toggle ${!showFavoritesOnly ? 'active' : ''}`}
@@ -98,13 +110,19 @@ function App() {
           {showFavoritesOnly ? 'Tus personajes guardados' : 'Habitantes encontrados'}
         </h2>
 
-        {loading && !showFavoritesOnly ? (
+        {loading && !showFavoritesOnly && (
           <div className="text-center loading-state">Teletransportando datos...</div>
-        ) : (
+        )}
+
+        {error && !showFavoritesOnly && (
+          <ErrorMessage message={error} onRetry={handleRetry} />
+        )}
+
+        {!loading && !error && (
           <>
             {dataToShow.length === 0 ? (
               <div className="text-center empty-state">
-                <p>{showFavoritesOnly ? 'Aún no tienes favoritos. ¡Añade algunos!' : 'No se encontró a nadie en esta dimensión.'}</p>
+                <p>{showFavoritesOnly ? 'Aún no tienes favoritos.' : 'No se encontró a nadie.'}</p>
               </div>
             ) : (
               <CharacterList 
